@@ -4,7 +4,7 @@
 */
 /*
 Plugin Name: Mythic Smooth Scroll
-Plugin URI: http://mythicdesigncompany.com
+Plugin URI: https://github.com/corybolles/Mythic-Smooth-Scroll
 Description: Simple jQuery smooth scroll plugin with optional offset for fixed headers.
 Version: 1.0.0
 Author: Mythic Design Company
