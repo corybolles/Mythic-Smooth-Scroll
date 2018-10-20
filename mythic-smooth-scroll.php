@@ -33,22 +33,22 @@ Copyright (C) 2018 Mythic Design Company
 
 defined('ABSPATH') or die('Please don\t access me in this way. I feel invaded.');
 
-function registerSettings() {
-   add_option( 'mythicSmoothScrollHeaderID', '');
-   add_option( 'mythicSmoothScrollOffsetAmount', '50');
+function mythic_ss_register_settings() {
+   add_option( 'mythic_ss_header_id', '');
+   add_option( 'mythic_ss_offset_amount', '50');
     
-   register_setting( 'mythicSmoothScrollOptions', 'mythicSmoothScrollHeaderID');
-   register_setting( 'mythicSmoothScrollOptions', 'mythicSmoothScrollOffsetAmount');
+   register_setting( 'mythic_ss_options', 'mythic_ss_header_id');
+   register_setting( 'mythic_ss_options', 'mythic_ss_offset_amount');
 }
-add_action( 'admin_init', 'registerSettings' );
+add_action( 'admin_init', 'mythic_ss_register_settings' );
 
-function registerOptionsPage() {
-    add_options_page('Smooth Scroll Options', 'Mythic Smooth Scroll', 'manage_options', 'mythic-smooth-scroll', 'mythicSmoothScrollOptionsPage');
+function mythic_ss_register_options_page() {
+    add_options_page('Mythic Smooth Scroll', 'Mythic Smooth Scroll', 'manage_options', 'mythic-smooth-scroll', 'mythic_ss_options_page');
 }
 
-add_action('admin_menu', 'registerOptionsPage');
+add_action('admin_menu', 'mythic_ss_register_options_page');
 
-function mythicSmoothScrollOptionsPage() {
+function mythic_ss_options_page() {
     
 ?>
 
@@ -56,17 +56,17 @@ function mythicSmoothScrollOptionsPage() {
         <h1>Mythic Smooth Scroll</h1>
         <form method="post" action="options.php">
             <?php
-                settings_fields( 'mythicSmoothScrollOptions' );
-                do_settings_sections( 'mythicSmoothScrollOptions' );
+                settings_fields( 'mythic_ss_options' );
+                do_settings_sections( 'mythic_ss_options' );
             ?>
             <table style="text-align: left;">
                 <tr valign="top">
-                    <th scope="row"><label for="mythicSmoothScrollHeaderID">Header ID (Leave blank if you're header is not fixed)</label></th>
-                    <td><input type="text" id="mythicSmoothScrollHeaderID" name="mythicSmoothScrollHeaderID" value="<?php echo get_option('mythicSmoothScrollHeaderID'); ?>" /></td>
+                    <th scope="row"><label for="mythic_ss_header_id">Header ID (Leave blank if you're header is not fixed)</label></th>
+                    <td><input type="text" id="mythic_ss_header_id" name="mythic_ss_header_id" value="<?php echo get_option('mythic_ss_header_id'); ?>" /></td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="mythicSmoothScrollOffsetAmount">Scroll Offset Amount (Default is 50). Will be added to fixed header's height.</label></th>
-                    <td><input type="text" id="mythicSmoothScrollOffsetAmount" name="mythicSmoothScrollOffsetAmount" value="<?php echo get_option('mythicSmoothScrollOffsetAmount'); ?>" pattern= "[0-9]+"/></td>
+                    <th scope="row"><label for="mythic_ss_offset_amount">Scroll Offset Amount (Default is 50). Will be added to fixed header's height.</label></th>
+                    <td><input type="text" id="mythic_ss_offset_amount" name="mythic_ss_offset_amount" value="<?php echo get_option('mythic_ss_offset_amount'); ?>" pattern= "[0-9]+"/></td>
                 </tr>
             </table>
             <?php  submit_button(); ?>
@@ -79,7 +79,7 @@ function mythicSmoothScrollOptionsPage() {
 
 
 
-function smoothScrollInit(){
+function mythic_ss_init(){
     
     if(is_admin_bar_showing()) {
         $adminBar = true;
@@ -88,8 +88,8 @@ function smoothScrollInit(){
     }
     
     $data = array(
-        'headerId' => get_option('mythicSmoothScrollHeaderID'),
-        'offsetAmount' => get_option('mythicSmoothScrollOffsetAmount'),
+        'headerId' => get_option('mythic_ss_header_id'),
+        'offsetAmount' => get_option('mythic_ss_offset_amount'),
         'adminBar' => $adminBar
     );
     
@@ -97,4 +97,4 @@ function smoothScrollInit(){
     wp_localize_script('smoothScroll', 'smoothScrollData', $data);
 }
 
-add_action( 'wp_enqueue_scripts', 'smoothScrollInit' );
+add_action( 'wp_enqueue_scripts', 'mythic_ss_init' );
