@@ -59,16 +59,13 @@ function mythic_ss_options_page() {
                 settings_fields( 'mythic_ss_options' );
                 do_settings_sections( 'mythic_ss_options' );
             ?>
-            <table style="text-align: left;">
-                <tr valign="top">
-                    <th scope="row"><label for="mythic_ss_header_id">Header ID (Leave blank if you're header is not fixed)</label></th>
-                    <td><input type="text" id="mythic_ss_header_id" name="mythic_ss_header_id" value="<?php echo get_option('mythic_ss_header_id'); ?>" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row"><label for="mythic_ss_offset_amount">Scroll Offset Amount (Default is 50). Will be added to fixed header's height.</label></th>
-                    <td><input type="text" id="mythic_ss_offset_amount" name="mythic_ss_offset_amount" value="<?php echo get_option('mythic_ss_offset_amount'); ?>" pattern= "[0-9]+"/></td>
-                </tr>
-            </table>
+            <label for="mythic_ss_header_id"><strong>Header ID (Leave blank if you're header is not fixed)</strong></label><br>
+            <a href="#">Not sure how to find this?</a><br>
+            <input type="text" id="mythic_ss_header_id" name="mythic_ss_header_id" value="<?php echo get_option('mythic_ss_header_id'); ?>" /><br>
+            <br>
+            <label for="mythic_ss_offset_amount"><strong>Scroll Offset Amount (Default is 50). Will be added to fixed header's height.</strong></label><br>
+            <input type="text" id="mythic_ss_offset_amount" name="mythic_ss_offset_amount" value="<?php echo get_option('mythic_ss_offset_amount'); ?>" pattern= "[0-9]+"/><br>
+            <br>
             <?php  submit_button(); ?>
         </form>
     </div>
